@@ -1,0 +1,1 @@
+{"servers":[{"name":"nse-official-cm","enabled":true,"transport":"streamable-http","url":"https://mcp.nseindia.in/cmmkt/mcp"},{"name":"nse-bhavcopy","enabled":true,"transport":"streamable-http","url":"https://mcp.nseindia.in/bhavcopy/cm/mcp"}],"fallback_order":["nse-official-cm","nse-bhavcopy"]}
