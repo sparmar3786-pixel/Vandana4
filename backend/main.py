@@ -4,15 +4,23 @@ from pydantic import BaseModel
 from .core import TerminalEngine,AIValidation
 from .ui_contract import SCREENS
 from .ai import SixLayerAI
+from .pipeline import Pipeline
+from .mcp_bridge import NSEMCPBridge
 import os
 app=FastAPI(title='NSE-AI-TERMINAL',version='0.1.0')
 app.add_middleware(CORSMiddleware,allow_origins=os.getenv('CORS_ORIGINS','*').split(','),allow_methods=['*'],allow_headers=['*'])
-engine=TerminalEngine();ai=SixLayerAI()
+engine=TerminalEngine();ai=SixLayerAI();pipeline=Pipeline(advanced=True);mcp=NSEMCPBridge()
 @app.get('/health')
 @app.get('/api/health')
 def health():return {'ok':True,'service':'nse-ai-terminal','source':'DEMO','live_orders':False}
 @app.get('/api/config')
 def config():return {'indices':engine.INDICES,'advanced':True,'min_trade_plans':5,'min_rr':1.8,'live_orders':False,'nse_mcp':True,'railway':True,'ai_layers':6}
+@app.get('/api/pipeline')
+def pipeline_status(index:str='NIFTY'):
+    snap=engine.snapshot(index.upper())
+    return {'parts':pipeline.run(snap)}
+@app.get('/api/mcp/health')
+async def mcp_health(): return {'enabled':mcp.enabled,'configured':bool(mcp.url),'reachable':await mcp.health()}
 @app.get('/api/screens')
 def screens():return SCREENS
 @app.get('/api/indices')
