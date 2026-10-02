@@ -46,4 +46,4 @@ def test_ui_contract_has_exactly_30_screens():
     from backend.ui_contract import SCREENS
     assert len(SCREENS) == 30
     assert SCREENS[0]["title"] == "Splash / Launch"
-    assert SCREENS[-1]["title"] == "Help / Education"
+    assert SCREENS[-1]["title"] == "Order Flow - Dark"
