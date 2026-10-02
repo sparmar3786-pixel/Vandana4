@@ -11,17 +11,57 @@
 <body>
 <header class="top">
   <div class="brand"><div class="logo">↗</div><div><b>NSE-AI-TERMINAL</b><small>Smart Analysis · Disciplined Execution · AI Powered</small></div></div>
-  <div class="headline">38-Screen High-Performance Terminal</div>
-  <div class="badges"><span>377 Core + 25 Advanced</span><span>6-Layer AI</span><strong id="verdict">WAIT</strong></div>
+  <div class="headline">42-Point High Performance Terminal</div>
+  <div class="badges"><span>377 Core + 25 Advanced</span><span>6-Layer AI</span><strong>CALL BUY / PUT BUY / WAIT</strong></div>
 </header>
 <div class="toolbar">
   <button id="theme" type="button">☾ Dark</button>
-  <select id="index" aria-label="Index"><option>NIFTY</option></select>
+  <select id="index" aria-label="Index"><option>NIFTY</option><option>BANKNIFTY</option><option>FINNIFTY</option><option>MIDCPNIFTY</option><option>SENSEX</option><option>BANKEX</option></select>
   <span id="conn" class="pill">UI Ready</span>
   <span id="source" class="pill">PAPER / LIVE OFF</span>
 </div>
-<nav id="screen-tabs" class="screen-tabs" aria-label="terminal navigation"></nav>
-<main><section id="detail" class="detail" aria-live="polite"></section></main>
+
+<nav id="screen-tabs" class="screen-tabs" aria-label="terminal navigation">
+  <button class="tab active" type="button"><b>1</b><span>All Indian Indices</span></button>
+  <button class="tab" type="button"><b>2</b><span>NSE / BSE</span></button>
+  <button class="tab" type="button"><b>3</b><span>NSE Companies</span></button>
+  <button class="tab" type="button"><b>4</b><span>BSE Companies</span></button>
+  <button class="tab" type="button"><b>5</b><span>Dashboard</span></button>
+  <button class="tab" type="button"><b>6</b><span>Option Chain</span></button>
+  <button class="tab" type="button"><b>7</b><span>OI Heatmap</span></button>
+  <button class="tab" type="button"><b>8</b><span>Premium / Volume</span></button>
+  <button class="tab" type="button"><b>9</b><span>Greeks / IV</span></button>
+  <button class="tab" type="button"><b>10</b><span>Order Flow</span></button>
+  <button class="tab" type="button"><b>11</b><span>Regime</span></button>
+  <button class="tab" type="button"><b>12</b><span>Trade Plans</span></button>
+  <button class="tab" type="button"><b>13</b><span>Backtest</span></button>
+  <button class="tab" type="button"><b>14</b><span>Strategy Registry</span></button>
+  <button class="tab" type="button"><b>15</b><span>6-Layer AI</span></button>
+  <button class="tab" type="button"><b>16</b><span>Angel One API</span></button>
+  <button class="tab" type="button"><b>17</b><span>NSE MCP Live</span></button>
+  <button class="tab" type="button"><b>18</b><span>System Health</span></button>
+</nav>
+
+<main>
+<section id="detail" class="detail" aria-live="polite">
+  <div class="page-head">
+    <div><span class="eyebrow">NSE-AI-TERMINAL · LIVE UI</span><h1>All Indian Indices</h1><p>One terminal for NSE + BSE indices, verified market data and disciplined paper-mode analysis.</p></div>
+    <span class="status wait">PAPER MODE</span>
+  </div>
+  <div class="metrics">
+    <div class="metric"><small>NIFTY 50</small><b>—</b><span>Awaiting verified feed</span></div>
+    <div class="metric"><small>BANK NIFTY</small><b>—</b><span>Awaiting verified feed</span></div>
+    <div class="metric"><small>SENSEX</small><b>—</b><span>Awaiting verified feed</span></div>
+    <div class="metric"><small>BANKEX</small><b>—</b><span>Awaiting verified feed</span></div>
+  </div>
+  <div class="index-grid">
+    <article><b>NSE</b><strong>NIFTY 50 · BANK NIFTY · FINNIFTY</strong><small>Verified feed required for live values</small></article>
+    <article><b>BSE</b><strong>SENSEX · BANKEX · BSE 100</strong><small>Verified feed required for live values</small></article>
+    <article><b>Signal Terminal</b><strong>CALL BUY / PUT BUY / WAIT</strong><small>One final risk/R:R gate</small></article>
+  </div>
+  <div class="empty"><b>WAIT</b><p>Connect the Render backend to replace these UI placeholders with verified market data.</p><small>No fabricated prices or signals are displayed.</small></div>
+</section>
+</main>
 <footer>42-Point Rules · 32-Part Pipeline · 377 Strategies · 402 Modules · NSE MCP · Angel One SmartAPI · Render · Browser + Server AI · Backtest + Memory · Android APK</footer>
 <script src="final-ui.js" defer></script>
 </body>
