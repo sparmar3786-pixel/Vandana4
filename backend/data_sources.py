@@ -1,7 +1,8 @@
 from __future__ import annotations
 import time,math
 from .config import get_settings
-from .brokers import AngelOne,DataSourceError
+from .brokers import DataSourceError
+from .angel_one import AngelOneData
 class DemoSource:
     name="demo"
     def __init__(self):self._connected=False
@@ -15,7 +16,7 @@ class DemoSource:
             chain.append({'strike':strike,'ce_ltp':round(ce,2),'ce_oi':58000+abs(i)*3200,'ce_chg_oi':round((i*-1.7),2),'ce_vol':12000+abs(i)*400,'pe_ltp':round(pe,2),'pe_oi':42000+abs(i)*3600,'pe_chg_oi':round(i*1.5,2),'pe_vol':10500+abs(i)*350})
         return {'index':index,'spot':spot,'atm_strike':atm,'chain':chain,'timestamp':time.time(),'source':'DEMO','data_quality':'OK','regime':'UNCERTAIN','notes':['DEMO DATA — not live market data']}
 class SourceRouter:
-    def __init__(self):self.settings=get_settings();self.demo=DemoSource();self.angel=AngelOne();self.active=None
+    def __init__(self):self.settings=get_settings();self.demo=DemoSource();self.angel=AngelOneData();self.active=None
     async def connect(self):
         order=self.settings.fallback_order
         for name in order:
