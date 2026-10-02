@@ -5,11 +5,18 @@ on:
     branches: [main]
 jobs:
   deploy:
-    if: ${{ secrets.RAILWAY_TOKEN != '' }}
     runs-on: ubuntu-latest
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - uses: railwayapp/cli-action@v1
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-      - run: railway up --project db2f47ec-65a7-4089-b47a-d56557cfe644 --environment production --service nse-algo-backend-final --ci
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - run: npm install -g @railway/cli
+      - name: Deploy when token is configured
+        run: |
+          if [ -z "$RAILWAY_TOKEN" ]; then
+            echo "RAILWAY_TOKEN is not configured; skipping Railway deploy."
+            exit 0
+          fi
+          railway up --project db2f47ec-65a7-4089-b47a-d56557cfe644 --environment production --service nse-algo-backend-final --ci
