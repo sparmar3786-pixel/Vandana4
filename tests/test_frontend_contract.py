@@ -23,7 +23,7 @@ def test_ui_has_30_real_navigation_controls():
 def test_theme_is_persistent_and_drives_root_theme():
     assert "localStorage.setItem('nse_theme'" in APP
     assert "localStorage.getItem('nse_theme'" in APP
-    assert "data-theme" in APP
+    assert "document.documentElement.dataset.theme" in APP
     assert ":root[data-theme=dark]" in CSS
 
 
