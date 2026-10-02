@@ -1,0 +1,1 @@
+{"name":"nse-ai-terminal","version":"1.0.0","private":true,"scripts":{"test":"python -m pytest","build:android":"npx cap sync android && cd android && ./gradlew assembleDebug"},"dependencies":{"@capacitor/android":"^7.4.3","@capacitor/core":"^7.4.3","@capacitor/cli":"^7.4.3"}}
