@@ -10,4 +10,4 @@ def test_apk_shell_has_light_dark_and_mobile_viewport():
     assert "final.css" in HTML
     assert 'viewport-fit=cover' in HTML
     assert 'id="theme"' in HTML
-    assert 'data-theme' in HTML
+    assert 'dataset.theme' in HTML
