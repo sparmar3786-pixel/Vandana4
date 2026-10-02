@@ -22,4 +22,5 @@ class NSEMCPBridge:
         return await self._post({'jsonrpc':'2.0','id':3,'method':'tools/call','params':{'name':name,'arguments':arguments or {}}})
     async def health(self):
         if not self.enabled or not self.url:return False
+        await self.initialize()
         return (await self.tools_list()) is not None
