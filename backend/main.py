@@ -4,12 +4,13 @@ from pydantic import BaseModel
 from .core import TerminalEngine,AIValidation
 from .ui_contract import SCREENS
 from .ai import SixLayerAI
+from .server_ai import ServerSixLayerAI
 from .pipeline import Pipeline
 from .mcp_bridge import NSEMCPBridge
 import os
 app=FastAPI(title='NSE-AI-TERMINAL',version='0.1.0')
 app.add_middleware(CORSMiddleware,allow_origins=os.getenv('CORS_ORIGINS','*').split(','),allow_methods=['*'],allow_headers=['*'])
-engine=TerminalEngine();ai=SixLayerAI();pipeline=Pipeline(advanced=True);mcp=NSEMCPBridge()
+engine=TerminalEngine();ai=SixLayerAI();server_ai=ServerSixLayerAI();pipeline=Pipeline(advanced=True);mcp=NSEMCPBridge()
 @app.get('/health')
 @app.get('/api/health')
 def health():return {'ok':True,'service':'nse-ai-terminal','source':'DEMO','live_orders':False}
@@ -36,7 +37,7 @@ def decision(index:str):return engine.decision(index).__dict__
 def strategies(q:str=''):return [x.__dict__ for x in engine.registry.search(q)]
 class AIDigest(BaseModel):index:str='NIFTY';plans:list[dict]=[];regime:str='UNKNOWN';data_quality:str='UNKNOWN'
 @app.post('/api/ai/validate')
-async def validate(payload:AIDigest):return await ai.validate(payload.model_dump())
+async def validate(payload:AIDigest):return await server_ai.validate(payload.model_dump())
 @app.post('/api/orders/paper')
 def paper_order(payload:dict):return {'accepted':True,'mode':'PAPER','order':payload}
 @app.post('/api/orders/live')
